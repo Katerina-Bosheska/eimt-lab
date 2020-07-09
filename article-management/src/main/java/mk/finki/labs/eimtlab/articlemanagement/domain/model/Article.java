@@ -6,12 +6,10 @@ import lombok.NonNull;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.AbstractEntity;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.DomainObjectId;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,6 +30,11 @@ public class Article extends AbstractEntity<ArticleId> {
     private Integer likes;
 
     private boolean premium;
+
+    @OneToMany(mappedBy = "article")
+    private List<Comment> comments;
+    @ManyToOne
+    private Category category;
 
     public Article(@NonNull AuthorId authorId, String authorName, String title, String text, Date postedOn, boolean premium) {
         super(DomainObjectId.randomId(ArticleId.class));
@@ -55,7 +58,8 @@ public class Article extends AbstractEntity<ArticleId> {
         this.premium = premium;
     }
 
-    public Article(){
+    @SuppressWarnings("unused")
+    private Article(){
     }
 
 
