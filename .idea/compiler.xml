@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="transaction-management" />
-        <module name="authorization" />
-        <module name="article-management" />
-        <module name="shared-kernel" />
         <module name="eimt-lab" />
+        <module name="shared-kernel" />
+        <module name="article-management" />
+        <module name="subscription" />
+        <module name="authorization" />
+        <module name="transaction-management" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="article-management" options="-parameters" />
       <module name="authorization" options="-parameters" />
       <module name="shared-kernel" options="-parameters" />
+      <module name="subscription" options="-parameters" />
       <module name="transaction-management" options="-parameters" />
     </option>
   </component>
