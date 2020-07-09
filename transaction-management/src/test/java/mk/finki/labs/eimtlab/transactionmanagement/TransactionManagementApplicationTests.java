@@ -1,0 +1,13 @@
+package mk.finki.labs.eimtlab.transactionmanagement;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class TransactionManagementApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
