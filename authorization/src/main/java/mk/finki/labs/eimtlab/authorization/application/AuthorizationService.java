@@ -38,7 +38,7 @@ public class AuthorizationService {
         notificationRepository.save(notification);
     }
 
-    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onTransactionAdded(TransactionAddedEvent event) {
         User user = userRepository.findById(event.getUserId()).orElseThrow(RuntimeException::new);
         user.setStatus(Status.Valid);

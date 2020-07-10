@@ -1,7 +1,7 @@
 package mk.finki.labs.eimtlab.sharedkernel.infrastructure.eventlog;
 
+
 import lombok.var;
-import mk.finki.labs.eimtlab.sharedkernel.domain.base.RemoteEventLog;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.lang.NonNull;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -42,7 +42,7 @@ public class RemoteEventProcessor {
 
     private void processEvents(@NonNull RemoteEventLogService remoteEventLogService) {
 
-        RemoteEventLog log = remoteEventLogService.currentLog(getLastProcessedId(remoteEventLogService));
+        var log = remoteEventLogService.currentLog(getLastProcessedId(remoteEventLogService));
 
         processEvents(remoteEventLogService, log.events());
 

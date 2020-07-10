@@ -19,7 +19,7 @@ class TransactionAddedEventTranslator implements RemoteEventTranslator {
 
     @Override
     public boolean supports(StoredDomainEvent remoteEvent) {
-        return remoteEvent.domainEventClassName().equals("mk.finki.labs.eimtlab.authorization.integration.TransactionAddedEvent");
+        return remoteEvent.domainEventClassName().equals("mk.finki.labs.eimtlab.transactionmanagement.domain.event.TransactionAdded");
     }
 
     @Override
