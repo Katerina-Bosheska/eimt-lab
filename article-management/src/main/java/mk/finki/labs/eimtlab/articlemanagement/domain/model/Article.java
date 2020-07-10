@@ -1,5 +1,6 @@
 package mk.finki.labs.eimtlab.articlemanagement.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import lombok.NonNull;
@@ -31,6 +32,7 @@ public class Article extends AbstractEntity<ArticleId> {
 
     private boolean premium;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
     @ManyToOne
@@ -60,6 +62,10 @@ public class Article extends AbstractEntity<ArticleId> {
 
     @SuppressWarnings("unused")
     private Article(){
+    }
+
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
 
 

@@ -42,4 +42,10 @@ public class Subscription extends AbstractEntity<SubscriptionId> {
     public void removeSubscription(){
         this.valid = false;
     }
+
+    public void addSubscription(Plan plan, Date validFrom){
+        this.plan = plan;
+        this.valid = true;
+        this.validFrom = validFrom;
+    }
 }

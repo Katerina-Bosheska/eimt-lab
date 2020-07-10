@@ -24,9 +24,9 @@ public class DataGenerator {
     @Transactional
     public void generateData() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Kate", "hehe@mail.com", "Macedonia"));
-        users.add(new User("Kate2", "hehe2@mail.com", "Macedonia"));
-        users.add(new User("Kate3", "hehe3@mail.com", "Macedonia"));
+        users.add(new User(new UserId("kate1"),"Kate1", "hehe@mail.com", "Macedonia"));
+        users.add(new User(new UserId("kate2"), "Kate2", "hehe2@mail.com", "Macedonia"));
+        users.add(new User(new UserId("kate3"),"Kate3", "hehe3@mail.com", "Macedonia"));
         userRepository.saveAll(users);
     }
 

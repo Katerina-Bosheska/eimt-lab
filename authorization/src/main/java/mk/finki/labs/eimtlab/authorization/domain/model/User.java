@@ -1,5 +1,6 @@
 package mk.finki.labs.eimtlab.authorization.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.AbstractEntity;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.DomainObjectId;
@@ -8,6 +9,8 @@ import mk.finki.labs.eimtlab.sharedkernel.domain.info.Image;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,7 +33,12 @@ public class User extends AbstractEntity<UserId> {
 
     private String subscriptionPlanId;
 
-    public User(){}
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Notification> notifications;
+
+    @SuppressWarnings("unused")
+    private User(){}
 
     public User(UserId userId, String name, String email, String country){
         super(userId);
@@ -40,6 +48,7 @@ public class User extends AbstractEntity<UserId> {
         this.profilePic = new Image();
         this.creditCard = null;
         this.status = Status.Invalid;
+        this.notifications = new ArrayList<>();
     }
 
     public User(String name, String email, String country){
@@ -50,6 +59,15 @@ public class User extends AbstractEntity<UserId> {
         this.profilePic = new Image();
         this.creditCard = null;
         this.status = Status.Invalid;
+        this.notifications = new ArrayList<>();
+    }
+
+    public void setStatus(Status status){
+        this.status = status;
+    }
+
+    public void addNewNotificaion(Notification notification){
+        this.notifications.add(notification);
     }
 
 }
