@@ -1,12 +1,10 @@
 package mk.finki.labs.eimtlab.authorization.application;
 
-import mk.finki.labs.eimtlab.authorization.domain.model.AuthorId;
-import mk.finki.labs.eimtlab.authorization.domain.model.Notification;
-import mk.finki.labs.eimtlab.authorization.domain.model.User;
-import mk.finki.labs.eimtlab.authorization.domain.model.UserId;
+import mk.finki.labs.eimtlab.authorization.domain.model.*;
 import mk.finki.labs.eimtlab.authorization.domain.repository.NotificationRepository;
 import mk.finki.labs.eimtlab.authorization.domain.repository.UserRepository;
 import mk.finki.labs.eimtlab.authorization.integration.CommentPostedEvent;
+import mk.finki.labs.eimtlab.authorization.integration.TransactionAddedEvent;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +37,13 @@ public class AuthorizationService {
         );
         notificationRepository.save(notification);
     }
+
+    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    public void onTransactionAdded(TransactionAddedEvent event) {
+        User user = userRepository.findById(event.getUserId()).orElseThrow(RuntimeException::new);
+        user.setStatus(Status.Valid);
+        userRepository.save(user);
+    }
+
 
 }

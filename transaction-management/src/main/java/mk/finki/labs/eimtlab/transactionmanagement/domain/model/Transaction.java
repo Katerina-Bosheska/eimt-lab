@@ -1,5 +1,6 @@
 package mk.finki.labs.eimtlab.transactionmanagement.domain.model;
 
+import lombok.Getter;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.AbstractEntity;
 import mk.finki.labs.eimtlab.sharedkernel.domain.base.DomainObjectId;
 import mk.finki.labs.eimtlab.sharedkernel.domain.financial.Money;
@@ -12,6 +13,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
+@Getter
 public class Transaction extends AbstractEntity<TransactionId> {
 
     @Embedded
